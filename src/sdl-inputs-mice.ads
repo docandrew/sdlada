@@ -22,6 +22,7 @@
 --------------------------------------------------------------------------------------------------------------------
 --  SDL.Inputs.Mice
 --------------------------------------------------------------------------------------------------------------------
+private with SDL.C_Pointers;
 with SDL.Events.Mice;
 with SDL.Video.Windows;
 
@@ -36,13 +37,6 @@ package SDL.Inputs.Mice is
 
    function Capture (Enabled : in Boolean) return Supported with
      Inline;
-
-   --  SDL_CreateColorCursor
-   --  SDL_CreateCursor
-   --  SDL_CreateSystemCursor
-   --  SDL_FreeCursor
-   --  SDL_GetCursor
-   --  SDL_GetDefaultCursor
 
    function Get_Global_State (X_Relative, Y_Relative : out SDL.Events.Mice.Movement_Values) return
      SDL.Events.Mice.Button_Masks;

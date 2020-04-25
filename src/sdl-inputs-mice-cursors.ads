@@ -20,36 +20,45 @@
 --     3. This notice may not be removed or altered from any source
 --     distribution.
 --------------------------------------------------------------------------------------------------------------------
---  SDL.C_Pointers
---
---  This private package contains all the types representing the internal C pointers for various objects.
+--  SDL.Inputs.Mice.Cursors
 --------------------------------------------------------------------------------------------------------------------
-private package SDL.C_Pointers is
-   type Windows is null record;
-   type Windows_Pointer is access all Windows with
+with Ada.Finalization;
+
+package SDL.Inputs.Mice.Cursors is
+   --  Don't confuse this package with any type of Ada iterator, this is for visual mouse cursors.
+
+   type Cursor is new Ada.Finalization.Limited_Controlled with private;
+
+   overriding
+   procedure Finalize (Self : in out Cursor);
+
+   type System_Cursors is
+     (Arrow,
+      I_Beam,
+      Wait,
+      Cross_Hair,
+      Wait_Arrow,
+      Size_NWSE,
+      Size_NESW,
+      Size_WE,
+      size_NS,
+      Size_All,
+      No,
+      Hand) with
      Convention => C;
 
-   type Renderers is null record;
-   type Renderer_Pointer is access all Renderers with
-     Convention => C;
+   --  SDL_CreateColorCursor
+   --  SDL_CreateCursor
 
-   type Textures is null record;
-   type Texture_Pointer is access all Textures with
-     Convention => C;
+   procedure Create_System_Cursor (Self : in out Cursor; Cursor_Name : System_Cursors);
 
-   type GL_Contexts is null record;
-   type GL_Context_Pointer is access all GL_Contexts with
-     Convention => C;
+   procedure Get_Cursor (Self : in out Cursor);
 
-   type Joysticks is null record;
-   type Joystick_Pointer is access all Joysticks with
-     Convention => C;
-
-   type Game_Controller is null record;
-   type Game_Controller_Pointer is access all Game_Controller with
-     Convention => C;
-
-   type Cursors is null record;
-   type Cursor_Pointer is access all Cursors with
-     Convention => C;
-end SDL.C_Pointers;
+   procedure Set_Cursor (Self : in Cursor);
+private
+   type Cursor is new Ada.Finalization.Limited_Controlled with
+      record
+         Internal : SDL.C_Pointers.Cursor_Pointer := null;
+         Owns     : Boolean                       := True;
+      end record;
+end SDL.Inputs.Mice.Cursors;

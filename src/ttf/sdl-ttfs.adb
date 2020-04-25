@@ -315,4 +315,69 @@ package body SDL.TTFs is
          C.Strings.Free (C_Text);
       end return;
    end Render_Blended;
+
+   function Render_UTF_8_Solid (Self     : in Fonts;
+                                Text     : in UTF_Strings.UTF_8_String;
+                                Colour   : in SDL.Video.Palettes.Colour) return SDL.Video.Surfaces.Surface is
+      function TTF_Render_UTF_8_Solid (Font    : in Fonts_Ref;
+                                       Text    : in C.Strings.chars_ptr;
+                                       Colour  : in SDL.Video.Palettes.Colour)
+                                       return Video.Surfaces.Internal_Surface_Pointer with
+        Import        => True,
+        Convention    => C,
+        External_Name => "TTF_RenderUTF8_Solid";
+
+      C_Text : C.Strings.chars_ptr := C.Strings.New_String (Text);
+   begin
+      return S : SDL.Video.Surfaces.Surface :=
+        Make_Surface_From_Pointer (S    => TTF_Render_UTF_8_Solid (Self.Internal, C_Text, Colour),
+                                   Owns => True)
+      do
+         C.Strings.Free (C_Text);
+      end return;
+   end Render_UTF_8_Solid;
+
+   function Render_UTF_8_Shaded (Self              : in Fonts;
+                                 Text              : in UTF_Strings.UTF_8_String;
+                                 Colour            : in SDL.Video.Palettes.Colour;
+                                 Background_Colour : in SDL.Video.Palettes.Colour) return SDL.Video.Surfaces.Surface is
+      function TTF_Render_UTF_8_Shaded (Font              : in Fonts_Ref;
+                                        Text              : in C.Strings.chars_ptr;
+                                        Colour            : in SDL.Video.Palettes.Colour;
+                                        Background_Colour : in SDL.Video.Palettes.Colour)
+                                        return Video.Surfaces.Internal_Surface_Pointer with
+        Import        => True,
+        Convention    => C,
+        External_Name => "TTF_RenderUTF8_Shaded";
+
+      C_Text : C.Strings.chars_ptr := C.Strings.New_String (Text);
+   begin
+      return S : SDL.Video.Surfaces.Surface :=
+        Make_Surface_From_Pointer (S    => TTF_Render_UTF_8_Shaded (Self.Internal, C_Text, Colour, Background_Colour),
+                                   Owns => True)
+      do
+         C.Strings.Free (C_Text);
+      end return;
+   end Render_UTF_8_Shaded;
+
+   function Render_UTF_8_Blended (Self              : in Fonts;
+                                  Text              : in UTF_Strings.UTF_8_String;
+                                  Colour            : in SDL.Video.Palettes.Colour) return SDL.Video.Surfaces.Surface is
+      function TTF_Render_UTF_8_Blended (Font   : in Fonts_Ref;
+                                         Text   : in C.Strings.chars_ptr;
+                                         Colour : in SDL.Video.Palettes.Colour)
+                                         return Video.Surfaces.Internal_Surface_Pointer with
+        Import        => True,
+        Convention    => C,
+        External_Name => "TTF_RenderUTF8_Blended";
+
+      C_Text : C.Strings.chars_ptr := C.Strings.New_String (Text);
+   begin
+      return S : SDL.Video.Surfaces.Surface :=
+        Make_Surface_From_Pointer (S    => TTF_Render_UTF_8_Blended (Self.Internal, C_Text, Colour),
+                                   Owns => True)
+      do
+         C.Strings.Free (C_Text);
+      end return;
+   end Render_UTF_8_Blended;
 end SDL.TTFs;

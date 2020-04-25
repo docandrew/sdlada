@@ -67,7 +67,7 @@ Anything listed here is a question of whether it's required.
 
 ## [Current version](http://www.semver.org)
 
-v2.4.0
+v2.5.1
 
 ## Versions tested against
 
@@ -137,7 +137,7 @@ SDL_CreateRGBSurfaceFrom              |   n   |
 SDL_CreateRenderer                    |   y   |
 SDL_CreateSemaphore                   |   n   |
 SDL_CreateSoftwareRenderer            |   y   |
-SDL_CreateSystemCursor                |   n   |
+SDL_CreateSystemCursor                |   y   |
 SDL_CreateTexture                     |   y   |
 SDL_CreateTextureFromSurface          |   y   |
 SDL_CreateThread                      |   n   |
@@ -165,7 +165,7 @@ SDL_FillRects                         |   y   |
 SDL_FilterEvents                      |   n   |
 SDL_FlushEvent                        |   n   |
 SDL_FlushEvents                       |   n   |
-SDL_FreeCursor                        |   n   |
+SDL_FreeCursor                        |   y   |
 SDL_FreeFormat                        |   y   |
 SDL_FreePalette                       |   y   |
 SDL_FreeRW                            |   n   |      * (implicitly called by RWclose)
@@ -226,7 +226,7 @@ SDL_GetColorKey                       |   y   |
 SDL_GetCurrentAudioDriver             |   n   |
 SDL_GetCurrentDisplayMode             |   y   |
 SDL_GetCurrentVideoDriver             |   y   |
-SDL_GetCursor                         |   n   |
+SDL_GetCursor                         |   y   |
 SDL_GetDefaultAssertionHandler        |   n   |
 SDL_GetDefaultCursor                  |   n   |
 SDL_GetDesktopDisplayMode             |   y   |
@@ -500,7 +500,7 @@ SDL_SetAssertionHandler               |   n   |
 SDL_SetClipRect                       |   y   |
 SDL_SetClipboardText                  |   y   |
 SDL_SetColorKey                       |   y   |
-SDL_SetCursor                         |   n   |
+SDL_SetCursor                         |   y   |
 SDL_SetError                          |   y   |
 SDL_SetEventFilter                    |   n   |
 SDL_SetHint                           |   y   |
@@ -680,16 +680,16 @@ TTF_GlyphMetrics                      |   n   |
 TTF_SizeText                          |   y   |
 TTF_SizeUTF8                          |   y   |
 TTF_SizeUNICODE                       |   n   |
-TTF_RenderText_Solid                  |   n   |
-TTF_RenderUTF8_Solid                  |   n   |
+TTF_RenderText_Solid                  |   y   |
+TTF_RenderUTF8_Solid                  |   y   |
 TTF_RenderUNICODE_Solid               |   n   |
 TTF_RenderGlyph_Solid                 |   n   |
-TTF_RenderText_Shaded                 |   n   |
-TTF_RenderUTF8_Shaded                 |   n   |
+TTF_RenderText_Shaded                 |   y   |
+TTF_RenderUTF8_Shaded                 |   y   |
 TTF_RenderUNICODE_Shaded              |   n   |
 TTF_RenderGlyph_Shaded                |   n   |
-TTF_RenderText_Blended                |   n   |
-TTF_RenderUTF8_Blended                |   n   |
+TTF_RenderText_Blended                |   y   |
+TTF_RenderUTF8_Blended                |   y   |
 TTF_RenderUNICODE_Blended             |   n   |
 TTF_RenderGlyph_Blended               |   n   |
 TTF_Linked_Version                    |   y   |
