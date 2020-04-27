@@ -25,8 +25,10 @@ TESTS_SRCS	=	$(SRC_DIR)/test/clipboard.adb \
 
 GEN_KB		=	gen/src/sdl-events-keyboards.ads
 
-ifeq (,$(filter $(SDL_PLATFORM), "linux" "windows" "bsd" "android"))
+ifneq (,$(filter $(SDL_PLATFORM), "linux" "bsd" "android"))
 SDL2_CONFIG	=	-cargs `sdl2-config --cflags` -largs `sdl2-config --libs` -lSDL2_ttf -lSDL2_image
+else ifeq ($(SDL_PLATFORM),windows)
+SDL2_CONFIG	=	-largs -lSDL2 -lSDL2main -lSDL2_ttf -lSDL2_image -lmingw32 -mwindows
 else ifeq ($(SDL_PLATFORM),macosx)
 SDL2_CONFIG	=
 endif
@@ -61,7 +63,11 @@ clean-lib:
 tools: $(GEN_KB)
 
 $(GEN_KB): gen/$(SDL_MODE)/tools/gen_keyboard
+ifeq ($(SDL_PLATFORM),windows)
+	".\gen\$(SDL_MODE)\tools\gen_keyboard.exe" > $@
+else
 	./gen/$(SDL_MODE)/tools/gen_keyboard > $@
+endif
 
 gen/$(SDL_MODE)/tools/gen_keyboard:
 	$(GPRMAKE) -p -gnat2012 -XSDL_MODE=$(SDL_MODE) -XSDL_PLATFORM=$(SDL_PLATFORM) \
